@@ -54,7 +54,11 @@ The kit's drift checks and its budgets, each applied to a language repository at
   the module list from the core the repository pins;
 - `layers` refuses a language whose tests do not name every layer vector, the behaviour only a language can witness,
   except a directory the kit's language list exempts that language from by design
-  ([the layer vectors](https://github.com/weivel/conformance/tree/HEAD/docs/vectors/layer/README.md));
+  ([the layer vectors](https://github.com/weivel/conformance/tree/HEAD/docs/vectors/layer/README.md)); each
+  language's layer suite is described in its own docs:
+  [C](https://github.com/weivel/c/tree/HEAD/docs/conformance.md),
+  [Java](https://github.com/weivel/java/tree/HEAD/docs/modules/conformance.md) and
+  [TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/source/test/conformance/README.md);
 - `purity` refuses a file of any other language in the repository;
 - the language's `benchmarks` module holds its overhead to the bounds the kit keeps for it
   ([the budgets](https://github.com/weivel/conformance/tree/HEAD/docs/benchmarks.md)).
