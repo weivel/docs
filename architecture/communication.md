@@ -50,7 +50,7 @@ call into the library. A language that cannot read the library's C header binds 
 data the library answers that lists every struct, member offset and operation, after the standard's check has
 accepted it ([descriptions](https://github.com/weivel/standard/tree/HEAD/docs/descriptions.md)). No JSON crosses a C
 boundary: data crosses as structures, bytes or the standard's value tree, and JSON enters C only through the
-standard's readers. How each language binds a definition is [languages/reaching-c.md](../languages/reaching-c.md).
+standard's readers ([manifests](https://github.com/weivel/standard/tree/HEAD/docs/manifests.md)). How each language binds a definition is [languages/reaching-c.md](../languages/reaching-c.md).
 
 ## A program to its provider
 

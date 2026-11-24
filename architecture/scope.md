@@ -19,7 +19,7 @@ runs, refuses such a word ([the drift checks](https://github.com/weivel/conforma
 
 ## Formats
 
-The core takes a manifest as a C structure and reads no format. The JSON manifest and its schema are the standard's,
+The core takes a manifest as a C structure and reads no format. The JSON manifest and its schema are the standard's ([manifests](https://github.com/weivel/standard/tree/HEAD/docs/manifests.md)),
 and a host that wants another format, another layout or no files at all builds the core's structures itself and never
 links the standard; it owes the core nothing else. What a replacement still owes is the published ids and layouts of
 the services, which only ever grow ([replacing the standard](https://github.com/weivel/standard/tree/HEAD/docs/replacing.md)).
