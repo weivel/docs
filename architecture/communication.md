@@ -9,7 +9,9 @@ A plugin reaches the host, the core and every other plugin through its context a
 context no later than it opens the plugin, hands it to the plugin's entry when it calls the entry's activate, and calls the
 entry's optional deactivate when it releases the plugin. What the core reports about the plugin (a service revoked, a
 refusal of reach, a want settled degraded) arrives as events the host dispatches to the plugin's listeners. A host
-offers services of its own under `WEIVEL_HOST`, which a plugin resolves like any other service. The context's rules
+offers services of its own under `WEIVEL_HOST`, which a plugin resolves like any other service; the ones a host
+commonly offers (config, secrets, paths and log, and a per-plugin scope of them) are defined by
+[the standard's services](https://github.com/weivel/standard/tree/HEAD/docs/services.md). The context's rules
 are [the contract's `context`](https://github.com/weivel/core/tree/HEAD/docs/contract/context.md), and the host's
 [the contract's `host`](https://github.com/weivel/core/tree/HEAD/docs/contract/host.md).
 
@@ -21,7 +23,9 @@ watches a service, or lists a capability's implementations, through its context.
 own object, with no proxy, copy or wrapper, so calling it is a native call in the language that crosses nothing and
 takes no lock. That is how weivel adds no cost to a call between plugins once it is resolved, and the benchmarks
 hold it ([the cross-cutting rules](https://github.com/weivel/core/tree/HEAD/docs/contract/cross-cutting.md)). When the
-provider stops, the core revokes the service and the consumer hears it as an event, so it stops calling.
+provider stops, the core revokes the service and the consumer hears it as an event, so it stops calling; a want that
+has not settled keeps waiting for another provider ([the contract's `context`](https://github.com/weivel/core/tree/HEAD/docs/contract/context.md),
+under services and events).
 
 ## Language to core
 

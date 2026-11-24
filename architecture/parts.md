@@ -22,8 +22,9 @@ Its docs: [what the core is and is not](https://github.com/weivel/core/tree/HEAD
 
 **Owns** the defaults a host would otherwise write itself, as one C library a host may link or leave out: the JSON
 manifest and its published schema, repository identities, how plugins lie on disk and are discovered, the library
-declaration and the description of a definition, the config, secrets, paths, log, scope and host service definitions,
-and the format of the mirror list the core's binary is fetched from, with the check of a download (see
+declaration and the description of a definition,
+[the config, secrets, paths, log, scope and host service definitions](https://github.com/weivel/standard/tree/HEAD/docs/services.md),
+and the format of the mirror list the core's binary is to be fetched from, with the check of a download (see
 [scope.md](scope.md), under providers).
 
 **Does not own** any decision, and the core does not know it exists. It ships the ids and structs of its services and
