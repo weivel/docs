@@ -24,7 +24,7 @@ Its docs: [what the core is and is not](https://github.com/weivel/core/tree/HEAD
 manifest and its published schema, repository identities, how plugins lie on disk and are discovered, the library
 declaration and the description of a definition,
 [the config, secrets, paths, log, scope and host service definitions](https://github.com/weivel/standard/tree/HEAD/docs/services.md),
-and the format of the mirror list the core's binary is to be fetched from, with the check of a download (see
+and the format of a mirror list a host can fetch the core's binary from, with the check of a download (see
 [scope.md](scope.md), under providers).
 
 **Does not own** any decision, and the core does not know it exists. It ships the ids and structs of its services and

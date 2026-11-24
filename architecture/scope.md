@@ -35,10 +35,10 @@ the same modules, which its `parity` check holds ([languages/structure.md](../la
 ## Providers
 
 No provider is required. The standard ships the ids and structs of its services and no provider of any of them, so
-every provider, the host's own included, is one a project chooses. The core's binary is meant to be addressed by its
-content and fetched from a mirror list that is the user's own file: the standard owns the list's format and the check
-that a download is the file whose hash was asked for, and ships no list, so no mirror is required and none is
-privileged. Nothing fetches it yet, and how a language obtains the core today is stated beside the format
+every provider, the host's own included, is one a project chooses. The standard owns the format of a mirror list a
+host can fetch the core's binary from by its content hash, a list that is the user's own file, and the check that a
+download is the file whose hash was asked for; it ships no list, so no mirror is required and none is privileged. How
+a language obtains the core today is stated beside the format
 ([mirrors](https://github.com/weivel/standard/tree/HEAD/docs/mirrors.md)).
 
 ## What holds it
