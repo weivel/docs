@@ -8,25 +8,31 @@ another, and a rule is written once for all of them rather than once per languag
 The core's `MODULES` file lists the modules a language implements, in order, the optional ones marked, and
 [the contract](https://github.com/weivel/core/tree/HEAD/docs/contract/README.md) lists the same modules in the same
 order, one file per module saying what it must do and may not do, so a reader starts there rather than at the file.
-Every module keeps [the cross-cutting rules](https://github.com/weivel/core/tree/HEAD/docs/contract/cross-cutting.md): one wrapper calls in and drains, a resolved service
-is the provider's own object, no JSON crosses a C boundary, failures go to an error sink, and dispatch keeps its order.
-The modules stand on one another in one direction:
+Every module keeps [the cross-cutting rules](https://github.com/weivel/core/tree/HEAD/docs/contract/cross-cutting.md),
+the rules that bind every module. The modules stand on one another in one direction:
 
-- [`core`](https://github.com/weivel/core/tree/HEAD/docs/contract/core.md) loads the core's binary and owns the one wrapper every call into it goes through, which drains
-  the events each call queues and dispatches them;
-- [`handles`](https://github.com/weivel/core/tree/HEAD/docs/contract/handles.md) maps the core's integer handles to the language's own objects;
-- [`timer`](https://github.com/weivel/core/tree/HEAD/docs/contract/timer.md) arms the core's next deadline on the language's own timer and hands the core the time;
-- [`context`](https://github.com/weivel/core/tree/HEAD/docs/contract/context.md) is what a plugin sees of the core, built on those three: its services, capabilities,
-  events, log and manifest, for as long as the plugin is not forgotten;
-- [`host`](https://github.com/weivel/core/tree/HEAD/docs/contract/host.md) registers, activates and releases plugins written in the language, offers host services and
-  loads C libraries as host services.
+- [`core`](https://github.com/weivel/core/tree/HEAD/docs/contract/core.md) loads the core's binary and owns the one
+  wrapper every call into it goes through, which drains the events each call queues and dispatches them;
+- [`handles`](https://github.com/weivel/core/tree/HEAD/docs/contract/handles.md) maps the core's integer handles to
+  the language's own objects;
+- [`timer`](https://github.com/weivel/core/tree/HEAD/docs/contract/timer.md) arms the core's next deadline on the
+  language's own timer and hands the core the time;
+- [`context`](https://github.com/weivel/core/tree/HEAD/docs/contract/context.md) is what a plugin sees of the core,
+  built on those three: its services, capabilities, events, log and manifest, for as long as the plugin is not
+  forgotten;
+- [`host`](https://github.com/weivel/core/tree/HEAD/docs/contract/host.md) registers, activates and releases plugins
+  written in the language, offers host services and loads C libraries as host services.
 
-Beside them stand [`conformance`](https://github.com/weivel/core/tree/HEAD/docs/contract/conformance.md), the driver that runs the kit's layer vectors through the host,
-and [`benchmarks`](https://github.com/weivel/core/tree/HEAD/docs/contract/benchmarks.md), which times calls through weivel against the same calls made bare. Four modules
-are optional: [`standard`](https://github.com/weivel/core/tree/HEAD/docs/contract/standard.md), the language's access to the standard's defaults, on which none of the
-five above depends, so a host may leave the standard out; [`program`](https://github.com/weivel/core/tree/HEAD/docs/contract/program.md), a host program;
-[`bundle`](https://github.com/weivel/core/tree/HEAD/docs/contract/bundle.md), its packer; and [`testing`](https://github.com/weivel/core/tree/HEAD/docs/contract/testing.md), helpers for the tests of a program that hosts
-plugins.
+Beside them stand [`conformance`](https://github.com/weivel/core/tree/HEAD/docs/contract/conformance.md), the driver
+that runs the kit's layer vectors through the host, and
+[`benchmarks`](https://github.com/weivel/core/tree/HEAD/docs/contract/benchmarks.md), which times calls through weivel
+against the same calls made bare. Four modules are optional:
+[`standard`](https://github.com/weivel/core/tree/HEAD/docs/contract/standard.md), the language's access to the
+standard's defaults, on which none of the five above depends, so a host may leave the standard out;
+[`program`](https://github.com/weivel/core/tree/HEAD/docs/contract/program.md), a host program;
+[`bundle`](https://github.com/weivel/core/tree/HEAD/docs/contract/bundle.md), its packer; and
+[`testing`](https://github.com/weivel/core/tree/HEAD/docs/contract/testing.md), helpers for the tests of a program
+that hosts plugins.
 
 | language | holds | where the modules lie |
 |---|---|---|
