@@ -66,9 +66,9 @@ provider's `stop` decides ([the host service](https://github.com/weivel/standard
 [TypeScript's program](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)).
 
 The standard's service definitions are shaped so that a provider may live in another process: every operation
-completes before it returns, and a provider in another process answers once the write has reached it, as the header
-the [services doc](https://github.com/weivel/standard/tree/HEAD/docs/services.md) names, `include/weivel/services.h`,
-states.
+completes before it returns, and a provider in another process answers once the write has reached it
+([the standard's conventions](https://github.com/weivel/standard/tree/HEAD/docs/conventions.md), under threads and
+time).
 
 ## What is not built
 
