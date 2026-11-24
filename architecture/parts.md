@@ -11,9 +11,9 @@ a service is served, served degraded or refused, what is revoked when a plugin i
 and the ledger of every plugin. It also owns the contract every language implementation follows, written once so a new
 language translates it rather than copying another implementation.
 
-**Does not own** anything that touches the world. It never calls out, owns no clock, opens no file, reads no
-environment, parses no format and holds no plugin object, only integer handles its caller maps to its own objects.
-Loading plugins, reading manifests, calling services and logging are its caller's.
+**Does not own** anything that touches the world: loading plugins, reading manifests, calling services and logging
+are its caller's. How the core and its caller talk without the core ever calling out is
+[communication.md](communication.md), under language to core.
 
 Its docs: [what the core is and is not](https://github.com/weivel/core/tree/HEAD/docs/README.md), and
 [the contract a language implementation follows](https://github.com/weivel/core/tree/HEAD/docs/contract/README.md).
@@ -23,7 +23,8 @@ Its docs: [what the core is and is not](https://github.com/weivel/core/tree/HEAD
 **Owns** the defaults a host would otherwise write itself, as one C library a host may link or leave out: the JSON
 manifest and its published schema, repository identities, how plugins lie on disk and are discovered, the library
 declaration and the description of a definition, the config, secrets, paths, log, scope and host service definitions,
-and the mirror list the core's binary is fetched from.
+and the format of the mirror list the core's binary is fetched from, with the check of a download (see
+[scope.md](scope.md), under providers).
 
 **Does not own** any decision, and the core does not know it exists. It ships the ids and structs of its services and
 no provider of them, and everything in it can be replaced.
@@ -33,14 +34,11 @@ Its docs: [what the standard is](https://github.com/weivel/standard/tree/HEAD/do
 
 ## The language implementations
 
-**Own**, each for one language, what that language needs to host plugins written in it: loading the core's binary
-from a path its caller gives, the one wrapper every call into the core goes through, the table from the core's handles
-to the language's objects, the timer that hands the core the time, each plugin's context, and the host that registers,
-activates and releases plugins and loads C libraries as host services. There is one for
+**Own**, each for one language, what that language needs to host plugins written in it, as the modules every
+implementation holds ([languages/structure.md](../languages/structure.md)). There is one for
 [C](https://github.com/weivel/c/tree/HEAD/docs/README.md),
 [Java](https://github.com/weivel/java/tree/HEAD/docs/README.md) and
-[TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/README.md); the modules they share are
-[languages/structure.md](../languages/structure.md).
+[TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/README.md).
 
 **Do not own** any decision: compatibility, order, reach, waiting and revocation are the core's answers, which they
 carry out. None adds a format, file name or variable of its own; reading a manifest or discovering plugins goes

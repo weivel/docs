@@ -7,13 +7,15 @@ what that leaves to its users and what holds each line.
 ## Names
 
 The core reads no file, environment variable or path. A language implementation loads the core's binary from the path
-its caller gives, loads a plugin's code by a name its caller gives, and never assumes a language's module convention
-as a default. A path to a binary inside the language's own package, as the TypeScript package carries the core's and
+its caller gives. Its `host` module loads a plugin's code by a name its caller gives, and the core's
+[host contract](https://github.com/weivel/core/tree/HEAD/docs/contract/host.md) does not let it assume a language's
+module convention as a default. TypeScript's optional `program` module activates each entry's export `default` unless
+its caller names another ([its `program` module](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)). A path to a binary inside the language's own package, as the TypeScript package carries the core's and
 the standard's, is allowed, since it forces nothing on a caller who passes another. The names that weivel's defaults
 do use, such as the name of a plugin's manifest file and how plugins lie on disk, are the standard's
 ([layout](https://github.com/weivel/standard/tree/HEAD/docs/layout.md)). Nor does a weivel repository name a project that
-uses weivel or a vendor it would tie itself to: the kit's `names` check refuses such a word in every one
-([the drift checks](https://github.com/weivel/conformance/tree/HEAD/docs/checks.md)).
+uses weivel or a vendor it would tie itself to: the kit's `names` check, which each code repository's drift job
+runs, refuses such a word ([the drift checks](https://github.com/weivel/conformance/tree/HEAD/docs/checks.md)).
 
 ## Formats
 
@@ -26,7 +28,7 @@ the services, which only ever grow ([replacing the standard](https://github.com/
 
 No language is favoured. Every decision is made once, in C, so a plugin in any language meets the same decisions, and
 the kit holds every language implementation to one body of vectors. A C library ships C and the descriptions of its
-definitions, never a binding for one language, and each language binds a definition from its description. Each
+definitions, never a binding for one language, and each language binds a definition from its description. Each code
 repository holds only its own language, which the kit's `purity` check holds, and each language implementation holds
 the same modules, which its `parity` check holds ([languages/structure.md](../languages/structure.md)).
 
@@ -34,8 +36,8 @@ the same modules, which its `parity` check holds ([languages/structure.md](../la
 
 No provider is required. The standard ships the ids and structs of its services and no provider of any of them, so
 every provider, the host's own included, is one a project chooses. The core's binary is addressed by its content and
-fetched from a mirror list that is the user's own file: the standard ships no list, no mirror is required and none is
-privileged, and a download is checked against the hash that was asked for
+fetched from a mirror list that is the user's own file: the standard owns the list's format and the check that a
+download is the file whose hash was asked for, and ships no list, so no mirror is required and none is privileged
 ([mirrors](https://github.com/weivel/standard/tree/HEAD/docs/mirrors.md)).
 
 ## What holds it

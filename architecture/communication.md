@@ -29,10 +29,9 @@ A language implementation reaches the core through the core's one C header, and 
 Structures go in and come back out; every structure starts with its size and only grows, so a layer built against an
 older header keeps working against a newer core. The core never calls back: every change it makes lands in an event
 queue, which the wrapper drains after each call and dispatches in the core's order, outside the core. Time is handed in
-as a number, since the core owns no clock, and every plugin object is an integer handle the layer maps to its own. The
-core never calls out because a call into a host language would run that language's code under the core's one lock,
-which can deadlock, and a callback from C breaks a single-threaded language such as JavaScript; the core's
-[docs](https://github.com/weivel/core/tree/HEAD/docs/README.md) say so in full, and
+as a number, since the core owns no clock, opens no file, reads no environment and parses no format, and every plugin
+object is an integer handle the layer maps to its own. Why the core never calls out is the core's
+[docs](https://github.com/weivel/core/tree/HEAD/docs/README.md), and
 [the conventions of the ABI](https://github.com/weivel/core/tree/HEAD/docs/abi.md) state what every call keeps. How
 each language crosses into C is [languages/reaching-c.md](../languages/reaching-c.md).
 
@@ -62,13 +61,18 @@ ships a host program ([its `program` module](https://github.com/weivel/typescrip
 
 Everything above happens inside one process. The core is a library loaded into the host's process, every plugin and
 C library the host loads runs there, and two cores share nothing. What crosses a process boundary is only how a host
-program is told to end and how it answers: run from a command line, it takes its platform's terminate signals (SIGINT
-and SIGTERM, or SIGINT and SIGBREAK on Windows) as its stop request, and it exits with the code its provider's `stop`
-answered, or 1 when `stop` did not answer ok.
+program is told to end and how it answers: a stop request from its platform's terminate signals, and an exit code its
+provider's `stop` decides ([the host service](https://github.com/weivel/standard/tree/HEAD/docs/services.md),
+[TypeScript's program](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)).
+
+The standard's service definitions are shaped so that a provider may live in another process: every operation
+completes before it returns, and a provider in another process answers once the write has reached it, as the header
+the [services doc](https://github.com/weivel/standard/tree/HEAD/docs/services.md) names, `include/weivel/services.h`,
+states.
 
 ## What is not built
 
 - No channel between processes: a plugin reaches only services and capabilities registered in its own host's core,
-  never one in another process.
+  never one in another process, and no provider of a standard service that lives in another process exists.
 - No host for a plugin written in another language than the host's: each language implementation hosts plugins of its
   own language, so plugins written in two languages share nothing but the C libraries each of their hosts loads.

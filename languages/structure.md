@@ -35,7 +35,7 @@ Each language's own docs describe its modules:
 
 ## What keeps them alike
 
-The kit's drift checks, run by every language repository against the kit commit it pins
+The kit's drift checks and its budgets, each applied to a language repository at the kit commit it pins
 ([the drift checks](https://github.com/weivel/conformance/tree/HEAD/docs/checks.md)):
 
 - `parity` refuses a missing required module, a directory that is no module, and a module that holds no file, reading
