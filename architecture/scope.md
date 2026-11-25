@@ -10,7 +10,9 @@ The core reads no file, environment variable or path. A language implementation 
 its caller gives. Its `host` module loads a plugin's code by a name its caller gives, and the core's
 [host contract](https://github.com/weivel/core/tree/HEAD/docs/contract/host.md) does not let it assume a language's
 module convention as a default. TypeScript's optional `program` module activates each entry's export `default` unless
-its caller names another ([its `program` module](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)). A path to a binary inside the language's own package, as the TypeScript package carries the core's and
+its caller names another ([its `program` module](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)), and Rust's, which has no
+module convention to follow, resolves each entry's exported symbol `weivel_rust_entry` unless its caller names another
+([Rust's `program` module](https://github.com/weivel/rust/tree/HEAD/docs/program.md)). A path to a binary inside the language's own package, as the TypeScript package carries the core's and
 the standard's, is allowed, since it forces nothing on a caller who passes another. The names that weivel's defaults
 do use, such as the name of a plugin's manifest file and how plugins lie on disk, are the standard's
 ([layout](https://github.com/weivel/standard/tree/HEAD/docs/layout.md)). Nor does a weivel repository name a project that

@@ -38,11 +38,13 @@ that hosts plugins.
 |---|---|---|
 | C | the seven required and `standard` | `src/<module>`, headers under `include/weivel/c` |
 | Java | the seven required and `standard` | one package each under `src/main/java/com/weivel`, and the Java 22 backend of `core` under `src/main/java22/com/weivel` |
+| Rust | the seven required, `standard`, `program` and `testing` | `src/<module>` of one Cargo package, whose library starts from `src/lib.rs` |
 | TypeScript | all eleven | `src/<module>`, each a subpath of the package |
 
 Each language's own docs describe its modules:
 [C](https://github.com/weivel/c/tree/HEAD/docs/README.md),
-[Java](https://github.com/weivel/java/tree/HEAD/docs/modules/README.md) and
+[Java](https://github.com/weivel/java/tree/HEAD/docs/modules/README.md),
+[Rust](https://github.com/weivel/rust/tree/HEAD/docs/README.md) and
 [TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/modules/README.md).
 
 ## What keeps them alike
@@ -57,7 +59,8 @@ The kit's drift checks and its budgets, each applied to a language repository at
   ([the layer vectors](https://github.com/weivel/conformance/tree/HEAD/docs/vectors/layer/README.md)); each
   language's layer suite is described in its own docs:
   [C](https://github.com/weivel/c/tree/HEAD/docs/conformance.md),
-  [Java](https://github.com/weivel/java/tree/HEAD/docs/modules/conformance.md) and
+  [Java](https://github.com/weivel/java/tree/HEAD/docs/modules/conformance.md),
+  [Rust](https://github.com/weivel/rust/tree/HEAD/docs/conformance.md) and
   [TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/source/test/conformance/README.md);
 - `purity` refuses a file of any other language in the repository;
 - the language's `benchmarks` module holds its overhead to the bounds the kit keeps for it
@@ -77,4 +80,4 @@ A new language is a new repository, built in this order:
    `benchmarks/<language>.txt`, which the language's `benchmarks` module reads from the kit commit it pins.
 5. Run `purity`, `names`, `parity` and `layers` in the repository's drift job, against the pinned kit commit.
 
-How the language crosses into C is its own choice, and [reaching-c.md](reaching-c.md) shows the three made so far.
+How the language crosses into C is its own choice, and [reaching-c.md](reaching-c.md) shows the four made so far.

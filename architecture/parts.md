@@ -38,7 +38,8 @@ Its docs: [what the standard is](https://github.com/weivel/standard/tree/HEAD/do
 **Own**, each for one language, what that language needs to host plugins written in it, as the modules every
 implementation holds ([languages/structure.md](../languages/structure.md)). There is one for
 [C](https://github.com/weivel/c/tree/HEAD/docs/README.md),
-[Java](https://github.com/weivel/java/tree/HEAD/docs/README.md) and
+[Java](https://github.com/weivel/java/tree/HEAD/docs/README.md),
+[Rust](https://github.com/weivel/rust/tree/HEAD/docs/README.md) and
 [TypeScript](https://github.com/weivel/typescript/tree/HEAD/docs/README.md).
 
 **Do not own** any decision: compatibility, order, reach, waiting and revocation are the core's answers, which they
