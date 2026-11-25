@@ -58,8 +58,9 @@ A host program asks a C library what to run through the standard's `weivel.host`
 answers a plan (which libraries to load, which plugins to activate in which order, and whether to serve or run one
 action), the program carries it out and tells the library what happened, and the library's `stop` answers the exit
 code. The program decides nothing of its own and passes the clock in through `tick`
-([the host service](https://github.com/weivel/standard/tree/HEAD/docs/services.md)). TypeScript is the language that
-ships a host program ([its `program` module](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)).
+([the host service](https://github.com/weivel/standard/tree/HEAD/docs/services.md)). TypeScript and Rust are the languages
+that ship a host program ([TypeScript's `program` module](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md),
+[Rust's](https://github.com/weivel/rust/tree/HEAD/docs/program.md)).
 
 ## Process to process, as it is today
 
@@ -67,7 +68,8 @@ Everything above happens inside one process. The core is a library loaded into t
 C library the host loads runs there, and two cores share nothing. What crosses a process boundary is only how a host
 program is told to end and how it answers: a stop request from its platform's terminate signals, and an exit code its
 provider's `stop` decides ([the host service](https://github.com/weivel/standard/tree/HEAD/docs/services.md),
-[TypeScript's program](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md)).
+[TypeScript's program](https://github.com/weivel/typescript/tree/HEAD/docs/modules/program.md),
+[Rust's](https://github.com/weivel/rust/tree/HEAD/docs/program.md)).
 
 The standard's service definitions are shaped so that a provider may live in another process: every operation
 completes before it returns, and a provider in another process answers once the write has reached it
